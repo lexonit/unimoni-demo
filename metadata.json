@@ -1,0 +1,8 @@
+
+{
+  "name": "Unimoni - Digital Money Transfer",
+  "description": "A high-fidelity money transfer application for individual and business users featuring bank transfers, cash pickups, and digital wallet services.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
