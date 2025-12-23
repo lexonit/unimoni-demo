@@ -1,180 +1,216 @@
 
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ShieldCheck, Zap, Globe2, Landmark, Wallet, Banknote, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  ChevronDown, 
+  MapPin, 
+  Handshake, 
+  Briefcase,
+  Smile,
+  ArrowRight,
+  Globe,
+  QrCode,
+  Zap
+} from 'lucide-react';
 
 const LandingPage: React.FC = () => {
-  const [amount, setAmount] = useState('100');
-  const exchangeRate = 15.07999;
-  const convertedAmount = (parseFloat(amount || '0') * exchangeRate).toFixed(2);
+  const navigate = useNavigate();
+  const [sendAmount, setSendAmount] = useState('100');
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const exchangeRate = 9.5238; 
 
-  const services = [
+  const slides = [
     {
-      title: 'Bank Transfers',
-      desc: 'Send money directly to any bank account worldwide with competitive rates.',
-      icon: Landmark,
-      color: 'bg-blue-50 text-blue-600'
+      id: 1,
+      heading: "Travel Smart, Exchange Smarter",
+      subheading: "Seamless money transfer • Easy exchange",
+      image: "https://images.unsplash.com/photo-1610484826967-09c5720778c7?q=80&w=2070&auto=format&fit=crop",
+      cta: "Experience Freedom"
     },
     {
-      title: 'Digital Wallets',
-      desc: 'Instant transfers to popular e-wallets including PayPal, GCash, and more.',
-      icon: Wallet,
-      color: 'bg-indigo-50 text-indigo-600'
-    },
-    {
-      title: 'Cash Pickup',
-      desc: 'Your loved ones can pick up cash from thousands of agent locations globally.',
-      icon: Banknote,
-      color: 'bg-green-50 text-green-600'
+      id: 2,
+      heading: "Global Banking at Your Fingertips",
+      subheading: "Secure transfers to 150+ countries",
+      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop",
+      cta: "Start Transfer"
     }
   ];
 
-  return (
-    <div className="bg-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-slate-50 py-20 lg:py-32">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-blue-600/5 -skew-x-12 transform translate-x-1/2"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.1] mb-6">
-                Send money home <span className="text-blue-600">across the globe.</span>
-              </h1>
-              <p className="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed">
-                Experience seamless, secure, and instant international money transfers with Unimoni. Trusted by millions worldwide.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/signup" className="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition-all transform hover:-translate-y-1 shadow-lg shadow-blue-200 text-center">
-                  Start Transfer
-                </Link>
-                <Link to="/signin" className="bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all text-center">
-                  Track Transfer
-                </Link>
-              </div>
-            </div>
+  const todayRates = [
+    { country: 'UAE', code: 'AED', rate: '9.52', flag: 'https://flagcdn.com/w80/ae.png' },
+    { country: 'Australia', code: 'AUD', rate: '3.88', flag: 'https://flagcdn.com/w80/au.png' },
+    { country: 'Bangladesh', code: 'BDT', rate: '317.25', flag: 'https://flagcdn.com/w80/bd.png' },
+    { country: 'Canada', code: 'CAD', rate: '3.53', flag: 'https://flagcdn.com/w80/ca.png' },
+    { country: 'Egypt', code: 'EGP', rate: '122.80', flag: 'https://flagcdn.com/w80/eg.png' },
+    { country: 'UK', code: 'GBP', rate: '2.19', flag: 'https://flagcdn.com/w80/gb.png' },
+  ];
 
-            <div className="bg-white p-8 rounded-3xl shadow-2xl border border-slate-100">
-              <div className="space-y-6">
-                <div>
-                  <label className="block text-sm font-semibold text-slate-500 mb-2">You Send</label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <img src="https://flagcdn.com/w40/om.png" alt="OMR" className="w-6 h-4 rounded-sm" />
-                      <span className="ml-2 font-bold text-slate-900">OMR</span>
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
+  return (
+    <div className="min-h-screen bg-white font-sans overflow-x-hidden">
+      <main className="relative">
+        
+        {/* Hero Section */}
+        <div className="relative h-[600px] sm:h-[700px] lg:h-[850px] w-full overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+              className="absolute inset-0"
+            >
+              <div className="absolute inset-0 bg-[#003366]">
+                <img 
+                  src={slides[currentSlide].image} 
+                  className="w-full h-full object-cover opacity-30 lg:opacity-50"
+                  alt="Banking Hero"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#003366]/60 via-transparent to-[#003366]" />
+              </div>
+
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-8 z-10 pb-48 sm:pb-56 lg:pb-0">
+                <motion.h3 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-[#00AEEF] font-black text-[10px] sm:text-xs lg:text-lg mb-4 tracking-[0.3em] uppercase"
+                >
+                  {slides[currentSlide].subheading}
+                </motion.h3>
+                <motion.h1 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="text-3xl sm:text-5xl lg:text-8xl font-black text-white leading-tight mb-8 max-w-[90%] sm:max-w-5xl mx-auto tracking-tighter"
+                >
+                  {slides[currentSlide].heading}
+                </motion.h1>
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => navigate('/select-type')}
+                  className="bg-white text-[#003366] px-10 sm:px-14 py-4 sm:py-5 rounded-full font-black text-xs sm:text-base uppercase tracking-widest shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
+                >
+                  {slides[currentSlide].cta}
+                </motion.button>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Central Converter - Fully Responsive Positioning */}
+          <div className="absolute left-0 right-0 bottom-[-120px] sm:bottom-[-140px] lg:bottom-[-180px] flex justify-center px-4 z-[60]">
+            <motion.div 
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="w-full max-w-[550px] bg-[#003366] rounded-[2.5rem] sm:rounded-full border-[6px] sm:border-[12px] border-white shadow-2xl p-8 sm:p-14 lg:p-20 text-white flex flex-col items-center justify-center min-h-[400px] sm:min-h-[500px]"
+            >
+              <div className="w-full text-center">
+                <div className="w-full flex justify-between items-center mb-8 px-2">
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-black uppercase tracking-widest opacity-40">From</p>
+                    <div className="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-xl border border-white/5">
+                      <img src="https://flagcdn.com/w40/om.png" className="h-4 rounded-sm" alt="Oman" />
+                      <span className="font-black text-sm sm:text-base">OMR</span>
                     </div>
+                  </div>
+                  <div className="bg-[#00AEEF] p-2 rounded-full shadow-lg">
+                    <Zap size={20} className="text-white fill-current" />
+                  </div>
+                  <div className="space-y-1 text-right">
+                    <p className="text-[10px] font-black uppercase tracking-widest opacity-40">To</p>
+                    <div className="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-xl border border-white/5">
+                      <span className="font-black text-sm sm:text-base">AED</span>
+                      <img src="https://flagcdn.com/w40/ae.png" className="h-4 rounded-sm" alt="UAE" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="w-full space-y-6 mb-8">
+                  <div className="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8">
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 block">Enter Amount</label>
                     <input 
                       type="number" 
-                      value={amount}
-                      onChange={(e) => setAmount(e.target.value)}
-                      className="block w-full pl-24 pr-4 py-4 bg-slate-50 border-none rounded-2xl focus:ring-2 focus:ring-blue-500 font-bold text-2xl text-slate-900" 
+                      value={sendAmount} 
+                      onChange={(e) => setSendAmount(e.target.value)} 
+                      className="bg-transparent text-center text-4xl sm:text-5xl font-black outline-none w-full tabular-nums text-white" 
                     />
-                  </div>
-                </div>
-
-                <div className="flex justify-center -my-3">
-                  <div className="bg-blue-600 p-2 rounded-full text-white shadow-lg z-10">
-                    <ArrowRight className="h-5 w-5 transform rotate-90 lg:rotate-0" />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-slate-500 mb-2">Recipient Receives</label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center">
-                      <img src="https://flagcdn.com/w40/ph.png" alt="PHP" className="w-6 h-4 rounded-sm" />
-                      <span className="ml-2 font-bold text-slate-900">PHP</span>
-                      <ChevronDown className="h-4 w-4 ml-1 text-slate-400" />
+                    <div className="h-px bg-white/10 my-6" />
+                    <div className="text-center">
+                      <p className="text-[11px] font-bold text-[#00AEEF] uppercase tracking-[0.3em] mb-2">Indicative Total</p>
+                      <p className="text-4xl sm:text-5xl font-black tabular-nums tracking-tight">
+                        {(parseFloat(sendAmount || '0') * exchangeRate).toFixed(2)}
+                      </p>
                     </div>
-                    <input 
-                      type="text" 
-                      readOnly
-                      value={convertedAmount}
-                      className="block w-full pl-28 pr-4 py-4 bg-slate-50 border-none rounded-2xl font-bold text-2xl text-slate-900" 
-                    />
                   </div>
-                  <p className="mt-2 text-xs text-slate-500 font-medium">
-                    Exchange rate: 1 OMR = {exchangeRate} PHP
-                  </p>
                 </div>
 
-                <Link to="/signup" className="block w-full bg-blue-600 text-white text-center py-4 rounded-2xl font-bold text-lg hover:bg-blue-700 transition-colors">
-                  Check Rates & Fees
-                </Link>
-                <p className="text-[10px] text-center text-slate-400 uppercase tracking-widest">
-                  Exchange rates are indicative only and subject to change.
-                </p>
+                <button 
+                  onClick={() => navigate('/select-type')}
+                  className="bg-[#00AEEF] text-white py-4 sm:py-6 rounded-2xl sm:rounded-full font-black w-full hover:bg-white hover:text-[#003366] transition-all text-xs sm:text-sm uppercase tracking-widest shadow-xl active:scale-95"
+                >
+                  Send Money Now
+                </button>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
 
-      {/* Services Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Our key services</h2>
-            <p className="text-slate-500 max-w-2xl mx-auto">
-              Choose the method that works best for you and your recipient. We offer multiple ways to move money across borders quickly.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {services.map((service, i) => (
-              <div key={i} className="p-8 rounded-3xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:shadow-xl transition-all group">
-                <div className={`w-14 h-14 rounded-2xl ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                  <service.icon className="h-8 w-8" />
+        {/* Live Rates - Responsive Grid */}
+        <section className="pt-40 sm:pt-48 lg:pt-64 pb-20 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-[#003366] mb-4 tracking-tighter">Live Market Rates</h2>
+              <div className="w-20 h-1.5 bg-[#00AEEF] mx-auto rounded-full mb-6"></div>
+              <p className="text-slate-400 text-[10px] sm:text-xs font-black uppercase tracking-[0.3em]">Institutional-grade pricing updated every 30 seconds</p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
+              {todayRates.map((item, i) => (
+                <div key={i} className="bg-slate-50 border border-slate-100 rounded-3xl p-6 sm:p-8 flex flex-col items-center hover:bg-white hover:shadow-2xl hover:shadow-blue-900/10 transition-all group cursor-default">
+                  <div className="w-12 h-8 rounded shadow-sm mb-6 overflow-hidden">
+                    <img src={item.flag} className="w-full h-full object-cover" alt={item.country} />
+                  </div>
+                  <p className="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-1">1 OMR</p>
+                  <p className="text-2xl font-black text-[#003366]">{item.rate}</p>
+                  <p className="text-[10px] font-black text-[#00AEEF] uppercase mt-1 tracking-widest">{item.code}</p>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
-                <p className="text-slate-600 mb-6 leading-relaxed">{service.desc}</p>
-                <Link to="/signup" className="text-blue-600 font-bold flex items-center hover:gap-2 transition-all">
-                  Learn more <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Trust Section */}
-      <section className="py-20 bg-blue-900 text-white overflow-hidden relative">
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          <Globe2 className="h-[500px] w-[500px] absolute -bottom-40 -left-40" />
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="grid lg:grid-cols-3 gap-12 text-center">
-            <div className="space-y-4">
-              <div className="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <ShieldCheck className="h-8 w-8 text-blue-300" />
-              </div>
-              <h4 className="text-xl font-bold">Secure Transfers</h4>
-              <p className="text-blue-100 opacity-80">Bank-level encryption and security protocols for every transaction.</p>
-            </div>
-            <div className="space-y-4">
-              <div className="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Zap className="h-8 w-8 text-blue-300" />
-              </div>
-              <h4 className="text-xl font-bold">Instant Delivery</h4>
-              <p className="text-blue-100 opacity-80">Most transfers reach their destination in minutes, 24/7/365.</p>
-            </div>
-            <div className="space-y-4">
-              <div className="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Globe2 className="h-8 w-8 text-blue-300" />
-              </div>
-              <h4 className="text-xl font-bold">200+ Countries</h4>
-              <p className="text-blue-100 opacity-80">A global network connecting you to friends and family everywhere.</p>
+        {/* Global Network Stats */}
+        <section className="py-24 bg-slate-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-20">
+              {[
+                { label: 'Oman Branches', value: '55+', icon: MapPin },
+                { label: 'Market Tenure', value: '28Y', icon: Briefcase },
+                { label: 'Global Partners', value: '150+', icon: Handshake },
+                { label: 'Active Users', value: '3M+', icon: Smile }
+              ].map((stat, i) => (
+                <div key={i} className="flex flex-col items-center text-center space-y-4">
+                  <div className="w-16 h-16 rounded-3xl bg-[#003366]/5 flex items-center justify-center text-[#003366]">
+                    <stat.icon size={28} />
+                  </div>
+                  <h2 className="text-4xl lg:text-6xl font-black text-[#003366] tracking-tighter leading-none">{stat.value}</h2>
+                  <p className="text-slate-400 font-black text-[10px] uppercase tracking-widest px-2">{stat.label}</p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
     </div>
   );
 };
-
-// Helper
-const ChevronDown: React.FC<{ className?: string }> = ({ className }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-  </svg>
-);
 
 export default LandingPage;

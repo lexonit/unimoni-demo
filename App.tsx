@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import LandingPage from './pages/LandingPage';
+import SelectionPage from './pages/SelectionPage';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import ForgotPassword from './pages/ForgotPassword';
@@ -39,24 +40,28 @@ const AppRoutes = ({ isAuthenticated, user, handleLogin }: any) => {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         {/* Public Routes */}
-        <Route path="/" element={isAuthenticated ? <Navigate to="/dashboard" /> : <PageWrapper><SignIn onLogin={handleLogin} /></PageWrapper>} />
-        <Route path="/signin" element={isAuthenticated ? <Navigate to="/dashboard" /> : <PageWrapper><SignIn onLogin={handleLogin} /></PageWrapper>} />
+        <Route path="/" element={isAuthenticated ? <Navigate to="/dashboard" /> : <PageWrapper><LandingPage /></PageWrapper>} />
+        <Route path="/select-type" element={<PageWrapper><SelectionPage /></PageWrapper>} />
+        
+        {/* Dynamic Sign In based on type selection */}
+        <Route path="/signin/:type" element={isAuthenticated ? <Navigate to="/dashboard" /> : <PageWrapper><SignIn onLogin={handleLogin} /></PageWrapper>} />
+        
+        {/* Fallback for direct /signin access */}
+        <Route path="/signin" element={<Navigate to="/select-type" />} />
+        
         <Route path="/signup" element={isAuthenticated ? <Navigate to="/dashboard" /> : <PageWrapper><SignUp onLogin={handleLogin} /></PageWrapper>} />
         <Route path="/forgot-password" element={<PageWrapper><ForgotPassword /></PageWrapper>} />
         
         {/* Protected Private Routes */}
-        <Route path="/dashboard" element={isAuthenticated ? <PageWrapper><Dashboard user={user} /></PageWrapper> : <Navigate to="/signin" />} />
-        <Route path="/transfer" element={isAuthenticated ? <PageWrapper><TransferFlow /></PageWrapper> : <Navigate to="/signin" />} />
-        <Route path="/beneficiaries" element={isAuthenticated ? <PageWrapper><BeneficiaryList /></PageWrapper> : <Navigate to="/signin" />} />
-        <Route path="/history" element={isAuthenticated ? <PageWrapper><TransactionHistory /></PageWrapper> : <Navigate to="/signin" />} />
-        <Route path="/profile" element={isAuthenticated ? <PageWrapper><Profile user={user} onUpdate={() => {}} /></PageWrapper> : <Navigate to="/signin" />} />
+        <Route path="/dashboard" element={isAuthenticated ? <PageWrapper><Dashboard user={user} /></PageWrapper> : <Navigate to="/" />} />
+        <Route path="/transfer" element={isAuthenticated ? <PageWrapper><TransferFlow /></PageWrapper> : <Navigate to="/" />} />
+        <Route path="/beneficiaries" element={isAuthenticated ? <PageWrapper><BeneficiaryList /></PageWrapper> : <Navigate to="/" />} />
+        <Route path="/history" element={isAuthenticated ? <PageWrapper><TransactionHistory /></PageWrapper> : <Navigate to="/" />} />
+        <Route path="/profile" element={isAuthenticated ? <PageWrapper><Profile user={user} onUpdate={() => {}} /></PageWrapper> : <Navigate to="/" />} />
         
         {/* Verification and Services */}
-        <Route path="/upload-docs" element={isAuthenticated ? <PageWrapper><UploadDocuments /></PageWrapper> : <Navigate to="/signin" />} />
+        <Route path="/upload-docs" element={isAuthenticated ? <PageWrapper><UploadDocuments /></PageWrapper> : <Navigate to="/" />} />
         <Route path="/maintenance" element={<PageWrapper><UnderMaintenance /></PageWrapper>} />
-        <Route path="/locate" element={isAuthenticated ? <PageWrapper><div className="p-8 bg-white h-full rounded-3xl m-4 border border-slate-200"><h1 className="text-2xl font-bold">Locate & Find</h1><p className="text-slate-500 mt-2">Find your nearest Unimoni branch or agent location.</p></div></PageWrapper> : <Navigate to="/signin" />} />
-        <Route path="/more-services" element={isAuthenticated ? <PageWrapper><div className="p-8 bg-white h-full rounded-3xl m-4 border border-slate-200"><h1 className="text-2xl font-bold">More Services</h1><p className="text-slate-500 mt-2">Explore foreign exchange, bill payments, and more.</p></div></PageWrapper> : <Navigate to="/signin" />} />
-        <Route path="/kyc" element={isAuthenticated ? <PageWrapper><div className="p-8 bg-white h-full rounded-3xl m-4 border border-slate-200"><h1 className="text-2xl font-bold">KYC Verification</h1><p className="text-slate-500 mt-2">Securely upload identity documents.</p></div></PageWrapper> : <Navigate to="/signin" />} />
         
         {/* Error Pages */}
         <Route path="/error" element={<PageWrapper><ErrorPage /></PageWrapper>} />

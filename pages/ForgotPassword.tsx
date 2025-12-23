@@ -66,9 +66,7 @@ const ForgotPassword: React.FC = () => {
         {/* Left Section - Branding */}
         <div className="lg:w-[45%] bg-[#0d47a1] p-10 lg:p-16 flex flex-col items-center text-center text-white relative">
           <div className="mb-8">
-             <Link to="/">
-               <img src="/logo.svg" alt="Unimoni Logo" className="h-12 mx-auto mb-1" />
-             </Link>
+             <Link to="/" className="text-5xl font-bold tracking-tighter mb-1">unimoni</Link>
           </div>
           
           <div className="space-y-6 max-w-sm mt-12">

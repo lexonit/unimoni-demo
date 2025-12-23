@@ -29,7 +29,7 @@ const TransactionHistory: React.FC = () => {
   // Updated dummy data with ISO date strings for easier filtering
   const transactions = [
     { id: 'UN88210', name: 'Maria Santos', type: 'Bank Transfer', amount: 'PHP 15,200.00', status: 'Completed', date: '2023-10-24', icon: Landmark, color: 'text-blue-600' },
-    { id: 'UN88211', name: 'Sandhani Shaikh', type: 'Cash Pickup', amount: 'USD 500.00', status: 'Pending', date: '2023-10-23', icon: Banknote, color: 'text-green-600' },
+    { id: 'UN88211', name: 'John Smith', type: 'Cash Pickup', amount: 'USD 500.00', status: 'Pending', date: '2023-10-23', icon: Banknote, color: 'text-green-600' },
     { id: 'UN88212', name: 'PayPal Wallet', type: 'Wallet Transfer', amount: 'AED 2,000.00', status: 'Completed', date: '2023-10-20', icon: Wallet, color: 'text-indigo-600' },
     { id: 'UN88213', name: 'Ahmed Ali', type: 'Bank Transfer', amount: 'EGP 10,000.00', status: 'Failed', date: '2023-10-15', icon: Landmark, color: 'text-red-600' },
     { id: 'UN88214', name: 'Local Groceries', type: 'Wallet Transfer', amount: 'OMR 25.00', status: 'Completed', date: '2023-10-12', icon: Wallet, color: 'text-indigo-600' },

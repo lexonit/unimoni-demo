@@ -16,7 +16,7 @@ import {
 const BeneficiaryList: React.FC = () => {
   const [beneficiaries, setBeneficiaries] = useState([
     { id: '1', name: 'Maria Santos', type: 'Bank', bank: 'BDO Unibank', acc: '**** 8821', country: 'Philippines', avatar: 'https://i.pravatar.cc/150?u=1' },
-    { id: '2', name: 'Sandhani Shaikh', type: 'Cash', bank: 'Western Union', acc: 'Pickup Location', country: 'United Kingdom', avatar: 'https://i.pravatar.cc/150?u=2' },
+    { id: '2', name: 'John Smith', type: 'Cash', bank: 'Western Union', acc: 'Pickup Location', country: 'United Kingdom', avatar: 'https://i.pravatar.cc/150?u=2' },
     { id: '3', name: 'Fatima Al-Sayed', type: 'Bank', bank: 'Dubai Islamic Bank', acc: '**** 5567', country: 'UAE', avatar: 'https://i.pravatar.cc/150?u=3' },
     { id: '4', name: 'Rahul Kumar', type: 'Wallet', bank: 'Paytm Wallet', acc: '+91 98765 43210', country: 'India', avatar: 'https://i.pravatar.cc/150?u=4' },
   ]);
