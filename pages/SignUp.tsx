@@ -8,7 +8,7 @@ interface SignUpProps {
 }
 
 const SignUp: React.FC<SignUpProps> = ({ onLogin }) => {
-  const [type, setType] = useState<'individual' | 'business'>('individual');
+  const [type, setType] = useState<'individual' | 'business'>('business');
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
@@ -38,8 +38,8 @@ const SignUp: React.FC<SignUpProps> = ({ onLogin }) => {
       <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-20 xl:px-24">
         <div className="mx-auto w-full max-w-sm">
           <div className="mb-10 text-center">
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-2">Create Account</h2>
-            <p className="text-slate-500">Join the millions sending money with Unimoni</p>
+            <h2 className="text-3xl font-extrabold text-slate-900 mb-2">Sign Up with Corporate</h2>
+            <p className="text-slate-500">Register your business and join the millions sending money with Unimoni</p>
           </div>
 
           {/* Stepper */}
@@ -51,25 +51,6 @@ const SignUp: React.FC<SignUpProps> = ({ onLogin }) => {
           <form onSubmit={handleNext} className="space-y-6">
             {step === 1 ? (
               <>
-                <div className="flex p-1 bg-slate-100 rounded-xl mb-8">
-                  {/* <button 
-                    type="button"
-                    onClick={() => setType('individual')}
-                    className={`flex-1 flex items-center justify-center py-2 text-sm font-semibold rounded-lg transition-all ${type === 'individual' ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500'}`}
-                  >
-                    <User className="h-4 w-4 mr-2" />
-                    Individual
-                  </button> */}
-                  <button 
-                    type="button"
-                    onClick={() => setType('business')}
-                    className={`flex-1 flex items-center justify-center py-2 text-sm font-semibold rounded-lg transition-all ${type === 'business' ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500'}`}
-                  >
-                    <Building2 className="h-4 w-4 mr-2" />
-                    Business
-                  </button>
-                </div>
-
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-1">
                     {type === 'individual' ? 'Full Name' : 'Company Name'}

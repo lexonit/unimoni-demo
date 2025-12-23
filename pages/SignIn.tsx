@@ -238,7 +238,7 @@ const SignIn: React.FC<SignInProps> = ({ onLogin }) => {
                 <p className="text-slate-400 font-bold text-[9px] sm:text-[10px] uppercase tracking-widest">Global Account Service</p>
                 <div className="h-px w-8 bg-slate-100" />
              </div>
-             <Link to="/signup" className="inline-block px-10 sm:px-14 py-4 sm:py-5 bg-white border-2 border-slate-100 rounded-2xl sm:rounded-[1.5rem] text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-[#0d47a1] hover:bg-[#0d47a1] hover:text-white transition-all shadow-sm hover:shadow-xl">Open New Account</Link>
+             {isBusiness && <Link to="/signup" className="inline-block px-10 sm:px-14 py-4 sm:py-5 bg-white border-2 border-slate-100 rounded-2xl sm:rounded-[1.5rem] text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-[#0d47a1] hover:bg-[#0d47a1] hover:text-white transition-all shadow-sm hover:shadow-xl">Open New Account</Link>}
           </div>
         </div>
       </motion.div>
