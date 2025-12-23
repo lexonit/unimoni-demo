@@ -52,14 +52,14 @@ const SignUp: React.FC<SignUpProps> = ({ onLogin }) => {
             {step === 1 ? (
               <>
                 <div className="flex p-1 bg-slate-100 rounded-xl mb-8">
-                  <button 
+                  {/* <button 
                     type="button"
                     onClick={() => setType('individual')}
                     className={`flex-1 flex items-center justify-center py-2 text-sm font-semibold rounded-lg transition-all ${type === 'individual' ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500'}`}
                   >
                     <User className="h-4 w-4 mr-2" />
                     Individual
-                  </button>
+                  </button> */}
                   <button 
                     type="button"
                     onClick={() => setType('business')}

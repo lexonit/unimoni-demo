@@ -117,11 +117,14 @@ const SelectionPage: React.FC = () => {
                <motion.div 
                   animate={{ scale: [1, 1.03, 1] }}
                   transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                  className="w-full h-full group-hover:scale-110 transition-transform duration-1000"
+                  className="w-full h-full group-hover:scale-110 transition-transform duration-1000 flex items-center justify-center"
                >
                   <img 
-                    src="https://img.freepik.com/free-vector/business-transaction-concept-illustration_114360-4015.jpg?w=800" 
-                    className="w-full h-full object-contain brightness-110"
+                    src="https://img.freepik.com/free-vector/business-transaction-concept-illustration_114360-4015.jpg?w=400" 
+                    className=" object-contain brightness-110"
+                    style={{
+                      width:"400px"
+                    }}
                     alt="Business"
                   />
                </motion.div>

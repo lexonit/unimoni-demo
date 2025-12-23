@@ -168,7 +168,7 @@ const SignIn: React.FC<SignInProps> = ({ onLogin }) => {
           <div className="mb-10 sm:mb-16 flex justify-between items-start">
             <div className="space-y-1">
               <div className="lg:hidden flex items-center gap-1 text-xl font-black italic tracking-tighter mb-4">
-                <img src="/logo.svg" alt="Unimoni Logo" className="h-10 w-auto" />
+                <img src="/dark-logo.png" alt="Unimoni Logo" className="h-10 w-auto" />
               </div>
               <h2 className="text-2xl sm:text-4xl font-black text-slate-800 tracking-tighter uppercase">Sign In</h2>
               <p className="text-slate-400 font-bold uppercase tracking-widest text-[9px] sm:text-[10px]">Verification required</p>
@@ -180,7 +180,7 @@ const SignIn: React.FC<SignInProps> = ({ onLogin }) => {
 
           <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-10">
             <div className="space-y-3 sm:space-y-4">
-               <label className="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">National ID</label>
+               <label className="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{isBusiness ? "CR Number" : "National ID"} </label>
                <div className="relative group">
                   <div className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-[#0d47a1] transition-colors">
                      {isBusiness ? <Building2 size={20} /> : <User size={20} />}
