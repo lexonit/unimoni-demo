@@ -30,9 +30,9 @@ const SelectionPage: React.FC = () => {
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> <span className="hidden sm:inline">Back</span>
         </button>
 
-        <div className="flex items-center gap-1">
+        {/* <div className="flex items-center gap-1">
            <img src="/logo.svg" alt="Unimoni Logo" className="h-10 w-auto" />
-        </div>
+        </div> */}
 
         <div className="flex items-center space-x-3 sm:space-x-6 text-[10px] sm:text-[11px] font-black text-white/50 tracking-widest">
           <button onClick={() => setLang('en')} className={`${lang === 'en' ? 'text-[#00AEEF]' : 'hover:text-white'}`}>EN</button>

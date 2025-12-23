@@ -58,7 +58,7 @@ const Navbar: React.FC<NavbarProps> = ({ isAuthenticated, user, onLogout, onMenu
         <div className="w-full max-w-[1400px] mx-auto flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-1">
-            <img src="/logo.svg" alt="Unimoni Logo" className="h-10 w-auto" />
+            <img src="/dark-logo.png" alt="Unimoni Logo" className="h-10 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
