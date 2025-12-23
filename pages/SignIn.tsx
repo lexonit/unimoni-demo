@@ -170,7 +170,7 @@ const SignIn: React.FC<SignInProps> = ({ onLogin }) => {
               <div className="lg:hidden flex items-center gap-1 text-xl font-black italic tracking-tighter mb-4">
                 <img src="/dark-logo.png" alt="Unimoni Logo" className="h-10 w-auto" />
               </div>
-              <h2 className="text-2xl sm:text-4xl font-black text-slate-800 tracking-tighter uppercase">Sign In</h2>
+              <h2 className="text-2xl sm:text-4xl font-black text-slate-800 tracking-tighter uppercase">{isBusiness ? "Corporate Sign In" : "Individual Sign In"}</h2>
               <p className="text-slate-400 font-bold uppercase tracking-widest text-[9px] sm:text-[10px]">Verification required</p>
             </div>
             <Link to="/select-type" className="p-2 sm:p-3 bg-white rounded-xl sm:rounded-2xl shadow-sm text-slate-400 hover:text-[#003366] transition-all border border-slate-100 group">
