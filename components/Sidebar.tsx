@@ -92,7 +92,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           </div>
 
           {/* User Profile Summary */}
-          <div className="px-4 sm:px-6 py-6 sm:py-8 flex flex-col items-center justify-center transition-all">
+          <div className="px-4 sm:px-6 py-6 mt-20 sm:py-8 flex flex-col items-center justify-center transition-all">
             <div className="relative mb-2">
               <div className="h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 bg-[#ffca28] rounded-2xl flex items-center justify-center text-blue-900 shadow-md border-2 border-white group-hover/sidebar:scale-105 transition-transform">
                  <User className="h-6 w-6 lg:h-8 lg:w-8" />

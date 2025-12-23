@@ -9,10 +9,10 @@ const Footer: React.FC = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
             <div className="flex items-center space-x-2">
-              <div className="bg-blue-600 h-8 w-8 rounded-lg flex items-center justify-center">
+              {/* <div className="bg-blue-600 h-8 w-8 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">u</span>
-              </div>
-              <span className="text-2xl font-bold text-white tracking-tight">unimoni</span>
+              </div> */}
+              <img src="/logo.svg" alt="Unimoni Logo" className="h-10 w-auto" />
             </div>
             <p className="text-sm leading-relaxed">
               Leading global provider of money transfer, foreign exchange and payment solutions. Committed to trust and efficiency.
@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
         </div>
         
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium">
-          <p>© 2023 Unimoni Financial Services. All rights reserved.</p>
+          <p>© 2025 SMI. All rights reserved.</p>
           <div className="flex gap-6">
             <img src="https://flagcdn.com/w20/om.png" alt="Oman" className="h-4 w-6 rounded-sm" />
             <span>Regulated by Central Bank of Oman</span>
